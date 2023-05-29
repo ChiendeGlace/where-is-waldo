@@ -8,6 +8,7 @@ import LevelPage from './LevelPage';
 
 function App() {
   const [dialogOpen, setDialogOpen] = useState([]);
+  const [listToFind, setListToFind] = useState([]);
   return (
     <>
       {dialogOpen.length > 0 ? (
@@ -19,7 +20,7 @@ function App() {
                 path="/"
                 element={
                   <>
-                    <Header />
+                    <Header listToFind={listToFind} />
                     <Homepage setDialogOpen={setDialogOpen} />
                   </>
                 }
@@ -28,8 +29,11 @@ function App() {
                 path="/level/:id"
                 element={
                   <>
-                    <Header />
-                    <LevelPage />
+                    <Header listToFind={listToFind} />
+                    <LevelPage
+                      listToFind={listToFind}
+                      setListToFind={setListToFind}
+                    />
                   </>
                 }
               />
@@ -45,7 +49,7 @@ function App() {
               path="/"
               element={
                 <>
-                  <Header />
+                  <Header listToFind={listToFind} />
                   <Homepage setDialogOpen={setDialogOpen} />
                 </>
               }
@@ -54,8 +58,11 @@ function App() {
               path="/level/:id"
               element={
                 <>
-                  <Header />
-                  <LevelPage />
+                  <Header listToFind={listToFind} />
+                  <LevelPage
+                    listToFind={listToFind}
+                    setListToFind={setListToFind}
+                  />
                 </>
               }
             />
