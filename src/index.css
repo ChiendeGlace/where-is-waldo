@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+img {
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+}
