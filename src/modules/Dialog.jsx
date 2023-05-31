@@ -11,7 +11,7 @@ export const levelData = [
   [
     [
       { name: 'Waldo', src: Waldo },
-      { name: 'Wizzard', src: Wizzard },
+      { name: 'Odlaw', src: Odlaw },
       { name: 'Wenda', src: Wenda },
     ],
     Waldo1,
@@ -21,6 +21,7 @@ export const levelData = [
       { name: 'Waldo', src: Waldo },
       { name: 'Wizzard', src: Wizzard },
       { name: 'Odlaw', src: Odlaw },
+      { name: 'Wenda', src: Wenda },
     ],
     Waldo2,
   ],
@@ -37,6 +38,7 @@ export const levelData = [
       { name: 'Waldo', src: Waldo },
       { name: 'Wizzard', src: Wizzard },
       { name: 'Odlaw', src: Odlaw },
+      { name: 'Wenda', src: Wenda },
     ],
     Waldo4,
   ],
