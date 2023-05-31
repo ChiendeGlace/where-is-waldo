@@ -1,10 +1,26 @@
 import Waldo from './waldo.svg';
 import { Link } from 'react-router-dom';
-import { levelData } from './Dialog';
+import { levelData } from './data';
 import { useParams } from 'react-router-dom';
+import Timer from './Timer';
+import { useState, useEffect } from 'react';
 
-const Header = ({ listToFind }) => {
+const Header = ({ listToFind, gameFinished, setScore }) => {
+  const [seconds, setSeconds] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
   const index = useParams();
+  useEffect(() => {
+    if (index.id !== undefined) {
+      setIsRunning(true);
+      setSeconds(0);
+    }
+  }, [index]);
+  useEffect(() => {
+    if (gameFinished) {
+      setIsRunning(false);
+      setScore(seconds);
+    }
+  }, [gameFinished, seconds]);
   return (
     <header className="py-8 px-20p flex justify-center items-center w-full">
       {index.id != undefined ? (
@@ -29,6 +45,11 @@ const Header = ({ listToFind }) => {
               );
             })}
           </div>
+          <Timer
+            isRunning={isRunning}
+            setSeconds={setSeconds}
+            seconds={seconds}
+          />
           <Link to="/">
             <button className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">
               GO BACK

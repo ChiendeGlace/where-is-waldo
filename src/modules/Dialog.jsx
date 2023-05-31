@@ -1,48 +1,5 @@
-import Waldo from './waldo-char.webp';
-import Wenda from './wilma-char.webp';
-import Wizzard from './magician-char.webp';
-import Odlaw from './odlaw-char.webp';
-import Waldo1 from './waldo1.jpg';
-import Waldo2 from './waldo2.jpg';
-import Waldo3 from './waldo3.jpg';
-import Waldo4 from './waldo4.jpg';
 import { Link } from 'react-router-dom';
-export const levelData = [
-  [
-    [
-      { name: 'Waldo', src: Waldo },
-      { name: 'Odlaw', src: Odlaw },
-      { name: 'Wenda', src: Wenda },
-    ],
-    Waldo1,
-  ],
-  [
-    [
-      { name: 'Waldo', src: Waldo },
-      { name: 'Wizzard', src: Wizzard },
-      { name: 'Odlaw', src: Odlaw },
-      { name: 'Wenda', src: Wenda },
-    ],
-    Waldo2,
-  ],
-  [
-    [
-      { name: 'Waldo', src: Waldo },
-      { name: 'Wizzard', src: Wizzard },
-      { name: 'Odlaw', src: Odlaw },
-    ],
-    Waldo3,
-  ],
-  [
-    [
-      { name: 'Waldo', src: Waldo },
-      { name: 'Wizzard', src: Wizzard },
-      { name: 'Odlaw', src: Odlaw },
-      { name: 'Wenda', src: Wenda },
-    ],
-    Waldo4,
-  ],
-];
+import { levelData } from './data';
 
 const Dialog = ({ dialogOpen, setDialogOpen }) => {
   const levelName = dialogOpen[0].name;
@@ -53,7 +10,7 @@ const Dialog = ({ dialogOpen, setDialogOpen }) => {
       <img className="w-3/5" src={dialogOpen[0].src} alt="Where's waldo game" />
       <div className="w-2/5 flex flex-col px-16 gap-16">
         <h2 className="text-2xl">{dialogOpen[0].name}</h2>
-        <div className='flex gap-16'>
+        <div className="flex gap-16">
           {levelData[index][0].map((dataItem, i) => {
             return (
               <div className="relative" key={i}>
@@ -72,7 +29,9 @@ const Dialog = ({ dialogOpen, setDialogOpen }) => {
         <div className="flex gap-4">
           <Link to={path}>
             <button
-              onClick={() => setDialogOpen([])}
+              onClick={() => {
+                setDialogOpen([]);
+              }}
               className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
             >
               START

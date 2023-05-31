@@ -1,8 +1,9 @@
-import { levelData } from './Dialog';
+import { levelData } from './data';
+import { cordsCollection } from './data';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 
-const LevelPage = ({ listToFind, setListToFind }) => {
+const LevelPage = ({ listToFind, setListToFind, setGameFinished }) => {
   const [listOpen, setListOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const eventRef = useRef(null);
@@ -16,6 +17,12 @@ const LevelPage = ({ listToFind, setListToFind }) => {
   levelData[index.id - 1][0].forEach((x) => {
     array.push(x.name);
   });
+
+  useEffect(() => {
+    if (listToFind.length === 0) {
+      setGameFinished(true);
+    }
+  }, [listToFind, setGameFinished]);
 
   const handleDialogClick = (name) => {
     let correct = false;
@@ -156,30 +163,5 @@ const LevelPage = ({ listToFind, setListToFind }) => {
     </div>
   );
 };
-
-const cordsCollection = [
-  [
-    { characterId: 'Waldo', position: { x: 0.89, y: 0.665 } },
-    { characterId: 'Odlaw', position: { x: 0.66, y: 0.56 } },
-    { characterId: 'Wenda', position: { x: 0.13, y: 0.83 } },
-  ],
-  [
-    { characterId: 'Waldo', position: { x: 0.405, y: 0.63 } },
-    { characterId: 'Wizzard', position: { x: 0.78, y: 0.58 } },
-    { characterId: 'Odlaw', position: { x: 0.07, y: 0.69 } },
-    { characterId: 'Wenda', position: { x: 0.297, y: 0.525 } },
-  ],
-  [
-    { characterId: 'Waldo', position: { x: 0.28, y: 0.349 } },
-    { characterId: 'Wizzard', position: { x: 0.61, y: 0.87 } },
-    { characterId: 'Odlaw', position: { x: 0.6, y: 0.665 } },
-  ],
-  [
-    { characterId: 'Waldo', position: { x: 0.855, y: 0.74 } },
-    { characterId: 'Wizzard', position: { x: 0.07, y: 0.76 } },
-    { characterId: 'Odlaw', position: { x: 0.32, y: 0.64 } },
-    { characterId: 'Wenda', position: { x: 0.49, y: 0.42 } },
-  ],
-];
 
 export default LevelPage;

@@ -4,7 +4,7 @@ import Waldo3 from './waldo3.jpg';
 import Waldo4 from './waldo4.jpg';
 import LevelCard from './LevelCard';
 
-const Homepage = ({setDialogOpen}) => {
+const Homepage = ({ setDialogOpen }) => {
   return (
     <section className="px-20p flex flex-col justify-center items-center gap-16 mb-8">
       <div className="grid grid-cols-2 gap-16 w-full mx-auto">
