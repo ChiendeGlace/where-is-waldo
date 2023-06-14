@@ -21,6 +21,8 @@ const LevelPage = ({ listToFind, setListToFind, setGameFinished }) => {
   useEffect(() => {
     if (listToFind.length === 0) {
       setGameFinished(true);
+    } else {
+      setGameFinished(false)
     }
   }, [listToFind, setGameFinished]);
 

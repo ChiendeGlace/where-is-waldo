@@ -4,7 +4,7 @@ import Waldo3 from './waldo3.jpg';
 import Waldo4 from './waldo4.jpg';
 import LevelCard from './LevelCard';
 
-const Homepage = ({ setDialogOpen }) => {
+const Homepage = ({ setDialogOpen, setLeaderboardOpen }) => {
   return (
     <section className="px-20p flex flex-col justify-center items-center gap-16 mb-8">
       <div className="grid grid-cols-2 gap-16 w-full mx-auto">
@@ -17,7 +17,10 @@ const Homepage = ({ setDialogOpen }) => {
         <div className="flex flex-col gap-4">
           <h2 className="text-2xl">See if you can beat everyone</h2>
         </div>
-        <button className="text-xl bg-blue-500 text-white font-semibold py-2 px-4 rounded">
+        <button
+          onClick={() => setLeaderboardOpen(true)}
+          className="text-xl bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+        >
           VIEW THE LEADERBOARD
         </button>
       </div>
