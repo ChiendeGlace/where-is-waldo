@@ -71,6 +71,7 @@ function App() {
         <Leaderboard
           leaderboardData={leaderboardData}
           setLeaderboardData={setLeaderboardData}
+          setLeaderboardOpen={setLeaderboardOpen}
         />
       ) : null}
       {dialogOpen.length > 0 ? (

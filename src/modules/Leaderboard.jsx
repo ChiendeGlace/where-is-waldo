@@ -23,23 +23,23 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
-const Leaderboard = ({ leaderboardData, setLeaderboardData }) => {
+const Leaderboard = ({ leaderboardData, setLeaderboardData, setLeaderboardOpen }) => {
   const fetchLeaderboard = async () => {
     const level1Query = query(
       collection(db, 'leaderboard-level1'),
-      orderBy('score', 'desc')
+      orderBy('score', 'asc')
     );
     const level2Query = query(
       collection(db, 'leaderboard-level2'),
-      orderBy('score', 'desc')
+      orderBy('score', 'asc')
     );
     const level3Query = query(
       collection(db, 'leaderboard-level3'),
-      orderBy('score', 'desc')
+      orderBy('score', 'asc')
     );
     const level4Query = query(
       collection(db, 'leaderboard-level4'),
-      orderBy('score', 'desc')
+      orderBy('score', 'asc')
     );
 
     const [level1Snapshot, level2Snapshot, level3Snapshot, level4Snapshot] =
@@ -68,11 +68,11 @@ const Leaderboard = ({ leaderboardData, setLeaderboardData }) => {
   }, []);
 
   return (
-    <div>
-      <h2>Leaderboard</h2>
-      <ul>
-        <li>
-          <h3>Level 1</h3>
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center border border-gray-100 w-4/6 h-max bg-white px-4 py-8 gap-8">
+      <h2 className="text-2xl">Leaderboard</h2>
+      <ul className="flex gap-16">
+        <li className="flex flex-col gap-4">
+          <h3 className="text-xl">Level 1</h3>
           {leaderboardData.level1.length > 0 ? (
             <ul>
               {leaderboardData.level1.map((entry, index) => (
@@ -85,8 +85,8 @@ const Leaderboard = ({ leaderboardData, setLeaderboardData }) => {
             <p>No scores yet</p>
           )}
         </li>
-        <li>
-          <h3>Level 2</h3>
+        <li className="flex flex-col gap-4">
+          <h3 className="text-xl">Level 2</h3>
           {leaderboardData.level2.length > 0 ? (
             <ul>
               {leaderboardData.level2.map((entry, index) => (
@@ -99,8 +99,8 @@ const Leaderboard = ({ leaderboardData, setLeaderboardData }) => {
             <p>No scores yet</p>
           )}
         </li>
-        <li>
-          <h3>Level 3</h3>
+        <li className="flex flex-col gap-4">
+          <h3 className="text-xl">Level 3</h3>
           {leaderboardData.level3.length > 0 ? (
             <ul>
               {leaderboardData.level3.map((entry, index) => (
@@ -113,8 +113,8 @@ const Leaderboard = ({ leaderboardData, setLeaderboardData }) => {
             <p>No scores yet</p>
           )}
         </li>
-        <li>
-          <h3>Level 4</h3>
+        <li className="flex flex-col gap-4">
+          <h3 className="text-xl">Level 4</h3>
           {leaderboardData.level4.length > 0 ? (
             <ul>
               {leaderboardData.level4.map((entry, index) => (
@@ -128,6 +128,12 @@ const Leaderboard = ({ leaderboardData, setLeaderboardData }) => {
           )}
         </li>
       </ul>
+      <button
+        className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+        onClick={() => setLeaderboardOpen(false)}
+      >
+        CLOSE
+      </button>
     </div>
   );
 };

@@ -12,11 +12,11 @@ const Header = ({ listToFind, gameFinished, setScore }) => {
   const index = useParams();
 
   useEffect(() => {
-    if (index.id !== undefined) {
+    if (gameFinished == false) {
       setIsRunning(true);
       level = index.id;
     }
-  }, [index]);
+  }, [gameFinished]);
 
   useEffect(() => {
     if (gameFinished) {
@@ -25,7 +25,7 @@ const Header = ({ listToFind, gameFinished, setScore }) => {
   }, [gameFinished]);
 
   return (
-    <header className="py-8 px-20p flex justify-center items-center w-full">
+    <header className="py-8 px-20p flex justify-center items-center w-full sticky top-0 z-99999 bg-white">
       {index.id != undefined ? (
         <div className="flex justify-between items-center w-full">
           <div className="flex justify-center items-center gap-8">

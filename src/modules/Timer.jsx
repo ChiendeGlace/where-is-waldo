@@ -1,29 +1,27 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 const Timer = ({ isRunning, setScore }) => {
   const [seconds, setSeconds] = useState(0);
-  const result = useRef(0);
+  let intervalId;
 
   useEffect(() => {
-    let intervalId;
-
     if (isRunning) {
       intervalId = setInterval(() => {
         setSeconds((prevSeconds) => prevSeconds + 1);
-        result.current = seconds + 1
       }, 1000);
     }
 
     return () => {
       clearInterval(intervalId);
     };
-  }, [isRunning, seconds, setScore]);
+  }, [isRunning]);
 
   useEffect(() => {
-    if (result.current > 0 && isRunning == false) {
-      setScore(result.current);
+    if (!isRunning) {
+      clearInterval(intervalId);
+      setScore(seconds);
     }
-  }, [result.current]);
+  }, [isRunning, setScore, seconds]);
 
   return (
     <div>

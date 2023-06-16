@@ -22,7 +22,7 @@ const LevelPage = ({ listToFind, setListToFind, setGameFinished }) => {
     if (listToFind.length === 0) {
       setGameFinished(true);
     } else {
-      setGameFinished(false)
+      setGameFinished(false);
     }
   }, [listToFind, setGameFinished]);
 
@@ -34,8 +34,8 @@ const LevelPage = ({ listToFind, setListToFind, setGameFinished }) => {
       const y =
         cordsCollection[index.id - 1][i].position.y * imageRef.current.height;
       if (
-        Math.abs(x - cordsClickX.current) <= 10 &&
-        Math.abs(y - cordsClickY.current) <= 10 &&
+        Math.abs(x - cordsClickX.current) <= 20 &&
+        Math.abs(y - cordsClickY.current) <= 20 &&
         name == cordsCollection[index.id - 1][i].characterId
       ) {
         correct = true;
@@ -84,10 +84,12 @@ const LevelPage = ({ listToFind, setListToFind, setGameFinished }) => {
   const handleMouseMove = (e) => {
     const circle = document.getElementById('circle-cursor');
     const dot = document.getElementById('dot-cursor');
-    circle.style.top = e.clientY + 'px';
-    circle.style.left = e.clientX + 'px';
-    dot.style.top = e.clientY + 'px';
-    dot.style.left = e.clientX + 'px';
+    if (circle != null && dot != null) {
+      circle.style.top = e.clientY + 'px';
+      circle.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      dot.style.left = e.clientX + 'px';
+    }
   };
 
   const handleContainerScroll = () => {
@@ -120,7 +122,7 @@ const LevelPage = ({ listToFind, setListToFind, setGameFinished }) => {
   return (
     <div
       id="container"
-      className="cursor-none relative"
+      className="cursor-none z-1"
       onScroll={handleContainerScroll}
     >
       <img
@@ -131,12 +133,13 @@ const LevelPage = ({ listToFind, setListToFind, setGameFinished }) => {
         onMouseLeave={handleMouseLeave}
         src={levelData[index.id - 1][1]}
         alt="Waldo guessing game"
+        className="z-1"
       />
       {isHovered ? (
         <>
           <div
             id="circle-cursor"
-            className="bg-black bg-opacity-20 border-4 border-dashed border-black rounded-full w-20 h-20 fixed left-0 top-0 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none cursor-none z-10"
+            className="bg-black bg-opacity-20 border-4 border-dashed border-black rounded-full w-14 h-14 fixed left-0 top-0 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none cursor-none z-10"
           ></div>
           <div
             id="dot-cursor"
