@@ -1,5 +1,5 @@
-import { Route, Routes, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 import Homepage from './Homepage';
 import ScrollToTop from './ScrollToTop';
@@ -20,6 +20,13 @@ function App() {
     level3: [],
     level4: [],
   });
+
+  useEffect(() => {
+    if (leaderboardOpen || dialogOpen || gameFinished) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [leaderboardOpen, dialogOpen, gameFinished]);
+
 
   return (
     <>
@@ -75,16 +82,10 @@ function App() {
         />
       ) : null}
       {dialogOpen.length > 0 ? (
-        <Dialog
-          dialogOpen={dialogOpen}
-          setDialogOpen={setDialogOpen}
-        />
+        <Dialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} />
       ) : null}
       {gameFinished ? (
-        <FinishPopUp
-          setGameFinished={setGameFinished}
-          score={score}
-        />
+        <FinishPopUp setGameFinished={setGameFinished} score={score} />
       ) : null}
     </>
   );
